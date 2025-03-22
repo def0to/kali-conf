@@ -260,6 +260,9 @@ alias l='ls -CF'
 # Using batcat to dispay stuff  
 alias bat='batcat --theme=Dracula'
 
+
+
+
 # Help aliasses higligting color using batcat and the previous defined alias 
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
@@ -270,8 +273,19 @@ command -v lsd > /dev/null && alias tree='lsd --tree'
 command -v batcat > /dev/null && alias cat='batcat --pager=never --style=grid'
 command -v batcat > /dev/null && alias less='batcat'
 
-# Colored nmap with grc 
-command -v grc > /dev/null && alias nmap='grc nmap'
+# Colored nmap with grc and alerting
+command -v grc > /dev/null && function nmap() {
+    grc nmap "$@"
+    if [ $? -eq 0 ]; then
+        zenity --info --text="Nmap Completed" --title="Nmap" > /dev/null 2>&1
+    fi
+}
+
+
+# netcat with rlwrap we need to specify port 
+alias rlwnc='rlwrap -ef nc -lvnp'
+listener() { rlwnc "${1:-443}"; }
+
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
