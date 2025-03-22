@@ -12,7 +12,7 @@ fi
 
 
 # List of programs to install
-prog=("batcat" "grc" "fzf" "lsd" )
+prog=("batcat" "grc" "fzf" "lsd" "rlwrap" "zenity" )
 
 # Loop to check each program from list 
 for programs in "${prog[@]}"; do
