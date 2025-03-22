@@ -48,8 +48,10 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    tree)         find .  | fzf  --height 60%  --reverse  --border="sharp" --border-label="" --preview-window="sharp"   --preview '[ -d {} ] && tree -C {} || batcat --color=always --style=numbers {}' "$@";;
-    
+    tree)         find .  | fzf  --height 70%  --reverse  --border="sharp" --border-label="" --preview-window="sharp" --preview '[ -d {} ] && tree -C {} || batcat --color=always --style=numbers {}' "$@";;
+    *)            fzf "$@" ;;
+
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
     *)            fzf "$@" ;;
   esac
 }
