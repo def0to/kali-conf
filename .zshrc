@@ -1,6 +1,8 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
+
+
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
@@ -9,7 +11,7 @@ setopt nonomatch           # hide error message if there is no match for the pat
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
-
+ 
 WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # hide EOL sign ('%')
@@ -254,16 +256,21 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+
+# Using batcat to dispay stuff  
 alias bat='batcat --theme=Dracula'
 
-# Help aliasses higligting color
+# Help aliasses higligting color using batcat and the previous defined alias 
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 command -v lsd > /dev/null && alias ls='lsd --group-dirs first'
 command -v lsd > /dev/null && alias tree='lsd --tree'
-command -v batcat > /dev/null && alias cat='batcat --pager=never'
+# Again using bat to display things 
+command -v batcat > /dev/null && alias cat='batcat --pager=never --style=grid'
 command -v batcat > /dev/null && alias less='batcat'
+
+# Colored nmap with grc 
 command -v grc > /dev/null && alias nmap='grc nmap'
 
 # enable auto-suggestions based on the history
@@ -278,10 +285,15 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
+
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# This is custom script for fzf
 source /home/kali/.fzf/completion.zsh
 
+
+# This is my custom script for fzf 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
 
 
