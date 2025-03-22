@@ -12,7 +12,7 @@ fi
 
 
 # List of programs to install
-prog=("batcat" "grc" "fzf" "lsd" "rlwrap" "zenity" "konsole" "code")
+prog=("bat" "grc"  "lsd" "rlwrap" "zenity" "konsole" "code")
 
 # Loop to check each program from list 
 for programs in "${prog[@]}"; do
@@ -23,6 +23,11 @@ for programs in "${prog[@]}"; do
         sudo apt update && apt install "$programs" -y 
     fi
 done
+
+
+# Install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 
 # Check if file exist if not create 
